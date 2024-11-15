@@ -4,9 +4,9 @@ from typing import Optional
 from pydantic import BaseModel, Field, field_validator, model_validator
 
 
-# Модель для получения данных от пользователя
 class CircleRequest(BaseModel):
     """
+    Модель для получения данных от пользователя\n
     Атрибуты модели:\n
     latitude - Широта в EPSG:4326\n
     longitude - Долгота в EPSG:4326\n
@@ -37,7 +37,8 @@ class CircleRequest(BaseModel):
     @field_validator('latitude', 'longitude')
     def check_coordinates_type(cls, v, field):
         if not isinstance(v, (int, float)):
-            raise ValueError(f'{field.name.capitalize()} должно быть числом (целым или с плавающей запятой), но получено {type(v).__name__}.')
+            raise ValueError(f'{field.name.capitalize()} должно быть числом (целым или с плавающей запятой), '
+                             f'но получено {type(v).__name__}.')
         if field.name == 'latitude' and not (-90 <= v <= 90):
             raise ValueError('Широта должна быть в пределах от -90 до 90 градусов.')
         if field.name == 'longitude' and not (-180 <= v <= 180):

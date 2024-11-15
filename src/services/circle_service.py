@@ -3,9 +3,11 @@ from math import radians, cos, sin
 from shapely.geometry.polygon import Polygon
 
 
-# Функция для вычисления координат точек круга
 def create_circle(lon: float, lat: float, radius: float, num_points: int = 100):
-    """Генерируем круг, используя радиус и координаты центра (lon, lat)."""
+    """
+    Функция для вычисления координат точек круга\n
+    Генерируем круг, используя радиус и координаты центра (lon, lat).
+    """
     # Переводим радиус в градусы
     radius_deg = radius / 111320  # 1 градус ~ 111.32 км
     angle_step = 360 / num_points  # Угол между точками круга

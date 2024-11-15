@@ -13,6 +13,12 @@ class Settings(BaseSettings):
     DB_PASS: str = os.environ.get("DB_PASS")
     DB_NAME: str = os.environ.get("DB_NAME")
 
+    SECRET: str = os.environ.get("SECRET")
+
+    @property
+    def get_SECRET(self):
+        return self.SECRET
+
     @property
     def DATABASE_URL_asyncpg(self):
         # postgresql+asyncpg://postgres:postgres@localhost:5432/coverage_calculation

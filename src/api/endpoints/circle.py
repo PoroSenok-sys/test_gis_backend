@@ -4,9 +4,10 @@ from asyncio import sleep
 import geopandas as gpd
 import json
 
-from fastapi import APIRouter
+from fastapi import APIRouter, Depends
 
 from src.api.models.circle import CircleRequest
+from src.core.security import current_active_user
 from src.db.crud import create_cache_circle_data, get_cache_circle_data
 from src.services.circle_service import create_circle
 
@@ -17,7 +18,7 @@ router = APIRouter(
 
 
 @router.post("/generate-circle")
-async def generate_circle(request: CircleRequest):
+async def generate_circle(request: CircleRequest, user=Depends(current_active_user)):
     """
     Эндпоинт для генерации круга в GeoJSON-формате
     по координатам и радиусу.

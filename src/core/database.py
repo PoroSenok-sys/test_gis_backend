@@ -2,8 +2,9 @@
 from typing import Annotated
 
 from sqlalchemy import String
-from sqlalchemy.ext.asyncio import create_async_engine, async_sessionmaker
+from sqlalchemy.ext.asyncio import create_async_engine, async_sessionmaker, AsyncSession
 from sqlalchemy.orm import DeclarativeBase
+from collections.abc import AsyncGenerator
 
 from src.core.config import settings
 
@@ -32,3 +33,8 @@ class Base(DeclarativeBase):
                 cols.append(f"{col}={getattr(self, col)}")
 
         return f"<{self.__class__.__name__} {', '.join(cols)}>"
+
+
+async def get_async_session() -> AsyncGenerator[AsyncSession, None]:
+    async with async_session_factory() as session:
+        yield session
