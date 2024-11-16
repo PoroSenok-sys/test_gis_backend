@@ -17,7 +17,7 @@ router = APIRouter(
 )
 
 
-@router.post("/generate-circle")
+@router.post("/circle")
 async def generate_circle(request: CircleRequest, user=Depends(current_active_user)):
     """
     Эндпоинт для генерации круга в GeoJSON-формате

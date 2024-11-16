@@ -20,7 +20,7 @@ class Circle(Base):
     longitude - Долгота в EPSG:4326\n
     radius - Радиус в метрах
     """
-    __tablename__ = "circle_cache"
+    __tablename__ = "circle"
 
     id: Mapped[type_intpk]
     latitude: Mapped[float] = mapped_column(Float, nullable=False)
